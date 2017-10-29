@@ -15,8 +15,8 @@ class SignUpForm(forms.ModelForm):
         email_base, provider = email.split("@")
         domain, extension = provider.split(".")
 
-        if not domain == 'USC':
-            raise forms.ValidationError("please make sure you use your USC email")
+        # if not domain == 'USC':
+        #     raise forms.ValidationError("please make sure you use your USC email")
         if not extension == "edu":
             raise forms.ValidationError("please use valid .EDU address")
         return email
