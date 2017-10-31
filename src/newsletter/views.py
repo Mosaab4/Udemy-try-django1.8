@@ -1,14 +1,11 @@
+from django.conf import settings
 from django.shortcuts import render
+from django.core.mail import send_mail
 
 from .forms import SignUpForm,ContactForm
 # Create your views here.
 def home(request):
     title = "welcome"
-    # if request.user.is_authenticated() :
-    #     title = "Welcome %s" %(request.user)
-    # else:
-    #     title= "Welcome"
-
 
     form = SignUpForm(request.POST or None)
 
@@ -19,9 +16,6 @@ def home(request):
 
     if form.is_valid():
         instance = form.save(commit=False)
-        
-        # if not instance.full_name == None :
-        #     instance.full_name = "mosaab"
 
         full_name = form.cleaned_data.get("full_name")
 
@@ -29,9 +23,10 @@ def home(request):
             full_name = "New full name"
         instance.full_name = full_name
         instance.save()
-    context = {
-        "title":"Thank you",
-    }
+        
+        context = {
+            "title":"Thank you",
+        }
 
     return render(request,"home.html", context)
 
@@ -39,14 +34,26 @@ def contact(request):
     form = ContactForm(request.POST or None)
 
     if form.is_valid():
-        email = form.cleaned_data.get("email")
-        message = form.cleaned_data.get("message")
-        full_name = form.cleaned_data.get("full_name")
-        print email,message, full_name
+        form_email = form.cleaned_data.get("email")
+        form_message = form.cleaned_data.get("message")
+        form_full_name = form.cleaned_data.get("full_name")
+        print form_email,form_message, form_full_name
 
-        # for key, value in form.cleaned_data.iteritems():
-        #     print key, value
-        #     print form.cleaned_data.get(key)
+
+        subject = "Site Contact Form"
+        from_email = settings.EMAIL_HOST_USER
+        to_email = [from_email]
+        contact_message = "%s: %s via %s" %(form_full_name ,form_message, form_email)
+
+        some_html_message = """<h1>hello there</h1>"""
+        send_mail(
+            subject,
+            contact_message,
+            from_email,
+            to_email,
+            # html_message = some_html_message,
+            fail_silently=False,
+        )
     context = {
         "form":form,
     }
