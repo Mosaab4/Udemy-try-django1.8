@@ -12,6 +12,13 @@
 
     {% include 'head_css.html' %}
 
+    <style>
+      
+        {% block style %}
+        {% endblock style %}
+        
+    </style>
+
   </head>
 
   <body>
@@ -27,8 +34,10 @@
             {% endblock jumbotron_content %}
         </div>
       {% endblock jumbotron %}
+
+      
       {% block content %}
-        
+
       {% endblock content %}
     </main>
 
