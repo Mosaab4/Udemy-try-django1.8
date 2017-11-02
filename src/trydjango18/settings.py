@@ -38,12 +38,15 @@ EMAIL_USE_TLS = True
 
 INSTALLED_APPS = (
     'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django.contrib.sites',
+    'registration', #should be immediately above 'django.contrib.auth'
+    'django.contrib.auth',
+    
     'crispy_forms',
     
     'newsletter',
@@ -120,5 +123,12 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),"static_in_env", "media_root")
+
+
+ACCOUNT_ACTIVATION_DAYS = 7 
+REGISTRATION_AUTO_LOGIN = True 
+
+SITE_ID=1
+LOGIN_REDIRECT_URL='/accounts/register/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

@@ -36,15 +36,16 @@
                 <p class="lead text-align-center">Always open source</p>
             </div>
         
-        <div class="col-sm-3  pull-right">
-            <p class="lead">{{ title }}</p>
-            <form method="POST" action="">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <input class="btn btn-primary" type="submit" value="Sign Up!">
-            </form>
+        <div class="col-sm-3">
+            <div class="pull-right">
+                <p class="lead">{{ title }}</p>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input class="btn btn-primary" type="submit" value="Sign Up!">
+                </form>
+            </div>
         </div>
-
 
     </div>
 {% endblock content %}
