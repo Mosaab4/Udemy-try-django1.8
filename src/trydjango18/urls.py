@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^about$','trydjango18.views.about',name='about'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('registration.backends.default.urls')),
+
 ]
 
 if settings.DEBUG :

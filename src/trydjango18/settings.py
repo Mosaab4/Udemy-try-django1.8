@@ -44,10 +44,10 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'django.contrib.sites',
-    'registration', #should be immediately above 'django.contrib.auth'
     'django.contrib.auth',
     
     'crispy_forms',
+    'registration',
     
     'newsletter',
 )
